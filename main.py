@@ -4,17 +4,18 @@
 from flask_cors import CORS
 from hacks_api import app, db
 
-from hacks_api.api.api import # bp for table
-from hacks_api.model.model import # initializing function
+from hacks_api.api.api import student_bp
+from hacks_api.model.model import init_students
 
-app.register_blueprint(# bp for table)
 
+app.register_blueprint(student_bp)
 
 
 @app.before_first_request
 def init_db():
     with app.app_context():
         db.create_all()
+        init_students()
         # put your initializing function here
 
 
